@@ -1,19 +1,25 @@
 <?php
-		require_once("phar://../com.phar/phpSDK.phar/com.qys.service.impl/SealServiceImpl.php");
-		require_once("phar://../com.phar/phpSDK.phar/com.qys.common/SDKClient.php");
+		/** 
+		* 印章接口测试
+		* @author      xushuai
+		* @version     1.0 
+		*/  
+		require_once("../com.qiyuesuo.service.impl/SealServiceImpl.php");
+		require_once("../com.qiyuesuo.common/Receiver.php");
+		require_once("../com.qiyuesuo.common/Helper.php");
+		require_once("../com.qiyuesuo.common/SDKClient.php");
+		require_once "../com.qiyuesuo.common/Util.php";
 		
-		require_once "Util.php";
 		$url = Util::url;
 		$accessKey = Util::accessKey;
 		$accessSecret = Util::accessSecret;
-		
 		$SDk = new SDKClient($accessKey, $accessSecret, $url);
-		
-		//*************************印章接口*******************************************************************************************************************
-		
 		$sealServiceImpl = new SealServiceImpl($SDk);
-		//1 获取平台印章
-		
+		/*
+		 *---------------------------------------------------------------
+		 * 1 获取平台印章
+		 *---------------------------------------------------------------
+		 */
 		$a1 = get_millistime();
 		$result =  $sealServiceImpl->findSeal('2307419306108956847');
 		$a2 = get_millistime();
@@ -23,8 +29,11 @@
 		
 		
 		
-		
-		//2.生成企业电子印章
+		/*
+		 *---------------------------------------------------------------
+		 * 2.生成企业电子印章
+		 *---------------------------------------------------------------
+		 */
 		//$result  = $sealServiceImpl->generateSeal('石油公司');
 		//print_r($result);
 		
@@ -43,15 +52,21 @@
 		
 		
 		
-		
-		//3.生成个人电子印章
+		/*
+		 *---------------------------------------------------------------
+		 * 3.生成个人电子印章
+		 *---------------------------------------------------------------
+		 */
 	    //print_r($sealServiceImpl->generatePersonalSeal('王五'));
 	    
 		
 		
 		
-		
-		//4.获取所有可用的平台印章
+		/*
+		 *---------------------------------------------------------------
+		 * 4.获取所有可用的平台印章
+		 *---------------------------------------------------------------
+		 */
 		//print_r($sealServiceImpl->sealList());
 		/*		Array
 		(
