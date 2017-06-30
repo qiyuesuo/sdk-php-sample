@@ -1,5 +1,6 @@
 <?php
 require_once("../com.qiyuesuo.service/RemoteSignService.php");
+require_once("../com.qiyuesuo.common/Helper.php");
 class RemoteSignServiceImpl implements RemoteSignService{
 	const CREATE_CONTRACTBYFILE= "/remote/contract/createbyfile";
 	const CREATE_CONTRACTBYTEMPLATE="/remote/contract/createbytemplate";
