@@ -11,6 +11,6 @@
 */  
 class Util {
     const   url = "https://openapi.qiyuesuo.me";
-	const 	accessKey = "0VPomO22uY";
+	const 	accessKey = "0VPom*****";
 	const 	accessSecret = "TckV2xbfKJU0iN37v2anFt22NHFlne";
 }
