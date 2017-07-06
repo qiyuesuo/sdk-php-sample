@@ -1,14 +1,12 @@
 <?php
+		header("Content-Type: text/html; charset=utf-8");
 		/** 
 		* 印章接口测试
 		* @author      xushuai
-		* @version     1.0 
 		*/  
-		require_once("../com.qiyuesuo.service.impl/SealServiceImpl.php");
-		require_once("../com.qiyuesuo.common/Receiver.php");
-		require_once("../com.qiyuesuo.common/Helper.php");
-		require_once("../com.qiyuesuo.common/SDKClient.php");
-		require_once "../com.qiyuesuo.common/Util.php";
+		header("Content-type: text/html; charset=utf-8"); 
+		require_once(dirname(__FILE__).'/'.'../com.qiyuesuo.service.impl/SealServiceImpl.php');
+		require_once (dirname(__FILE__).'/'.'../com.qiyuesuo.common/Util.php');
 		
 		$url = Util::url;
 		$accessKey = Util::accessKey;
@@ -20,11 +18,11 @@
 		 * 1 获取平台印章
 		 *---------------------------------------------------------------
 		 */
-		$a1 = get_millistime();
+		/*$a1 = get_millistime();
 		$result =  $sealServiceImpl->findSeal('2307419306108956847');
 		$a2 = get_millistime();
 		echo $result['code'].'***'.$result['message']."***耗时(ms)=".($a2-$a1);
-		print_r($result);
+		print_r($result);*/
 		
 		
 		
@@ -57,7 +55,7 @@
 		 * 3.生成个人电子印章
 		 *---------------------------------------------------------------
 		 */
-	    //print_r($sealServiceImpl->generatePersonalSeal('王五'));
+	    //print_r($sealServiceImpl->generatePersonalSeal('丁武'));
 	    
 		
 		
@@ -67,7 +65,7 @@
 		 * 4.获取所有可用的平台印章
 		 *---------------------------------------------------------------
 		 */
-		//print_r($sealServiceImpl->sealList());
+		print_r($sealServiceImpl->sealList());
 		/*		Array
 		(
 		    [code] => 0

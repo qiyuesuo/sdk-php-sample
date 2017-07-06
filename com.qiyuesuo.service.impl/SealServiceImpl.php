@@ -1,5 +1,6 @@
 <?php
-require_once("../com.qiyuesuo.service/SealService.php");
+header("Content-Type: text/html; charset=utf-8");
+require_once(dirname(__FILE__).'/'."../com.qiyuesuo.service/SealService.php");
 class SealServiceimpl implements SealService{
 	const FIND_COMPANYSEAL ='/seal?sealId=';
 	const CREATE_SEALBYCOMPANY = "/seal/companyseal";

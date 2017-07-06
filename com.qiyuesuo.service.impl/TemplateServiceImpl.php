@@ -1,5 +1,6 @@
 <?php
-require_once("../com.qiyuesuo.service/TemplateService.php");
+header("Content-Type: text/html; charset=utf-8");
+require_once(dirname(__FILE__).'/'."../com.qiyuesuo.service/TemplateService.php");
 class TemplateServiceImpl implements TemplateService{
 	const  CONTRACT_TEMPLATE ="/template";
 	const  CONTRACT_TEMPLATE_DETAIL ="/template/detail?id=";

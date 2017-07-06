@@ -1,14 +1,11 @@
 <?php
+		header("Content-Type: text/html; charset=utf-8");
 		/** 
 		* 标准签接口测试
 		* @author      xushuai
-		* @version     1.0 
 		*/  
-		require_once("../com.qiyuesuo.service.impl/StandardSignServiceImpl.php");
-		require_once("../com.qiyuesuo.common/Receiver.php");
-		require_once("../com.qiyuesuo.common/Helper.php");
-		require_once("../com.qiyuesuo.common/SDKClient.php");
-		require_once "../com.qiyuesuo.common/Util.php";
+		require_once(dirname(__FILE__).'/'.'../com.qiyuesuo.service.impl/StandardSignServiceImpl.php');
+		require_once (dirname(__FILE__).'/'.'../com.qiyuesuo.common/Util.php');
 		$url = Util::url;
 		$accessKey = Util::accessKey;
 		$accessSecret = Util::accessSecret;
@@ -36,32 +33,33 @@
         $arr = array();  
         array_push($arr, $Receiver);  
         array_push($arr, $Receiver2);  
-        $json_string = json_encode($arr); 
+        $json_receivers = json_encode($arr); 
         
         
-        $file = "D:/demo.pdf";
-        $post_data = array(
-            "subject" => "我是亘岩的传人",//合同主题
-            "expireTime" => "2017-07-08",//合同截止日期；默认为合同创建日期往后30天，格式：yyyy-MM-dd HH:mm:ss
-            "docName" => "hsjsh哈哈哈",//文件名称
-            "receivers" => $json_string,//合同接收方（合同签署方）；是Receiver集合的Json字符串
-            "receiveType" =>"SIMUL",//签署顺序；SEQ（顺序签署）、SIMUL（无序签署）；默认SEQ
-        	//file:合同文件
-            "file" => new \CURLFile(realpath($file))
-        );
-        $result = $standardSignServiceImpl->createByLocal($post_data);
-        print_r($result);
+        $file_path = "D:/demo2.pdf";
+        $file = new \CURLFile(realpath($file_path));
+        
+        $contract = new Contract();
+        $contract->set_subject("我是亘岩");
+        $contract->set_expireTime("2017-07-08");
+        $contract->set_docName("hsjsh哈哈哈");
+        $contract->set_file($file);
+        $contract->set_receiveType("SIMUL");//签署顺序；SEQ（顺序签署）、SIMUL（无序签署）；默认SEQ
+        $contract->set_categoryId("2320051250809204968");//合同分类ID,分类在契约锁云平台进行维护
+        
+        //$result = $standardSignServiceImpl->createByLocal($json_receivers,$contract);
+        //print_r($result);
         
         
 		/*
 		 * 返回：
 		 * 
-		 * 		Array
-		(
-		    [code] => 0
-		    [documentId] => 2311852163688562692
-		    [message] => SUCCESS
-		)*/
+		 *Array
+(
+    [code] => 0
+    [documentId] => 2320052073295442157
+    [message] => SUCCESS
+)*/
         
         
         
@@ -74,24 +72,27 @@
         $Receiver->set_authLevel("BASIC");
         $Receiver->set_ordinal(2);
 
-
-        $Receiver3 = new Receiver("PLATFORM"); 
-        $Receiver3->set_ordinal(1);
-        //$Receiver3->set_legalPersonRequired(true);//是否需要签署法人章；默认false
+        $Receiver2 = new Receiver("PLATFORM"); 
+        $Receiver2->set_ordinal(1);
+        $Receiver2->set_legalPersonRequired(true);//是否需要签署法人章；默认false
+        
         $arr = array();  
         array_push($arr, $Receiver);  
-        array_push($arr, $Receiver3);  
-        $json_string = json_encode($arr); 
-        $file = "D:/demo.pdf";
-        $post_data = array(
-            "subject" => "有序标准签中国人xsLocal2",
-            "expireTime" => "2017-07-08",
-            "docName" => "有序标准签合同测试Local2",
-            "receivers" => $json_string,
-            "file" => new \CURLFile(realpath($file))
-        );
-        $result =  $standardSignServiceImpl->createByLocal($post_data);
-        print_r($result);
+        array_push($arr, $Receiver2);  
+        $json_receivers = json_encode($arr); 
+        
+        $file_path = "D:/demo.pdf";
+        $file = new \CURLFile(realpath($file_path));
+        
+        $contract = new Contract();
+        $contract->set_subject("我是亘岩的传人");
+        $contract->set_expireTime("2017-07-08");
+        $contract->set_docName("hsjsh哈哈哈");
+        $contract->set_file($file);
+        //$contract->set_categoryId("***");//合同分类ID,分类在契约锁云平台进行维护
+
+        //$result =  $standardSignServiceImpl->createByLocal($json_receivers,$contract);
+        //print_r($result);
         
         
 		/*返回：
@@ -108,7 +109,7 @@
 		 *---------------------------------------------------------------
 		 */
 		
-		//-----------------------------模板创建  无序
+		//-------模板创建  无序
 		$Receiver = new Receiver("PERSONAL");  
         $Receiver->set_name("徐*");
         $Receiver->set_mobile("17717088***");
@@ -128,23 +129,25 @@
         array_push($arr, $Receiver);  
         array_push($arr, $Receiver2);  
         array_push($arr, $Receiver3);  
-        $json_string = json_encode($arr); 
+        $json_receivers = json_encode($arr); 
+        
 
         $templates = array(
             'name'=>'帅哥0000',
             'mobile'=>'134871247850000'
         );
-        $post_data = array(
-            "subject" => "php0605-标准签-模板2017",//合同主题
-            "expireTime" => "2017-07-08",//合同截止日期；默认为合同创建日期往后30天
-            "templateId" => "2305581810964336993",//合同模板ID
-            "receivers" => $json_string,//合同接收人；是Receiver集合的Json字符串
-            "docName" => "标准签php0605",//文件名称
-            "receiveType" =>"SIMUL",//签署顺序；SEQ（顺序 签署）、SIMUL（无序 签署 ）；默认SEQ
-            "templateParams" => json_encode($templates)//合同模板参数；键值对形式字符串，如：｛“param1”:“value1”, "param2": "value2"｝
-        );
-        $result = $standardSignServiceImpl->createByTemplate($post_data);
-        print_r($result);
+        
+        $contract = new Contract();
+        $contract->set_subject("我是亘岩的传人");
+        $contract->set_expireTime("2017-07-08");
+        $contract->set_docName("hsjsh哈哈哈");
+        $contract->set_templateId("2305581810964336993");
+        $contract->set_receiveType("SIMUL");//签署顺序；SEQ（顺序 签署）、SIMUL（无序 签署 ）；默认SEQ
+        $contract->set_templateParams(json_encode($templates));//合同模板参数；键值对形式字符串
+        //$contract->set_categoryId("***");//合同分类ID,分类在契约锁云平台进行维护
+        
+        //$result = $standardSignServiceImpl->createByTemplate($json_receivers,$contract);
+        //print_r($result);
 		/*返回：
 		 * Array
 		(
@@ -169,36 +172,22 @@
 		$arr =array();  
 		array_push($arr, $Receiver);  
 		array_push($arr, $Receiver2);  
-		$json_string = json_encode($arr); 
+		$json_receivers = json_encode($arr); 
 		
 		$templates = array(
-			'name'=>'无名',
-		    'mobile'=>'13487124785'
-		);
-		$post_data = array(
-		    "subject" => "php-标准签-模板20170605",//合同主题
-		    "expireTime" => "2017-07-08",
-			"templateId" => "2305581810964336993",
-			"receivers" => $json_string,
-		    "docName" => "标准签0605php",//文件名称
-			"templateParams" => json_encode($templates)//合同模板参数；
-		);
-		$result = $standardSignServiceImpl->createByTemplate($post_data);
-		print_r($result);
-
-		/*返回：Array
-		(
-		    [code] => 0
-		    [contractId] => 2309308040413950008
-		    [documentId] => 2309308040036462645
-		    [message] => SUCCESS
-		)*/
-		
-		
-		
-		
-		
-		
+            'name'=>'帅哥0000',
+            'mobile'=>'134871247850000'
+        );
+        
+        $contract = new Contract();
+        $contract->set_subject("我是亘岩的传人");//合同主题
+        $contract->set_expireTime("2017-07-08");
+        $contract->set_docName("hsjsh哈哈哈");//合同文件名称
+        $contract->set_templateId("2305581810964336993");
+        $contract->set_templateParams(json_encode($templates));//合同模板参数；键值对形式字符串
+        //$contract->set_categoryId("***");//合同分类ID,分类在契约锁云平台进行维护
+		//$result = $standardSignServiceImpl->createByTemplate($json_receivers,$contract);
+		//print_r($result);
 		
 		
 		/*
@@ -213,7 +202,7 @@
         $Receiver->set_authLevel("BASIC");
         $Receiver->set_ordinal(2);
 
-        $Receiver2 = new Receiver("PLATFORM"); 
+        $Receiver2 = new Receiver("PLATFORM"); //运营平台
         $Receiver2->set_ordinal(1);
         //是否需要签署法人章；默认false
         //$Receiver2->set_legalPersonRequired(true);
@@ -221,16 +210,17 @@
         $arr =array();  
         array_push($arr, $Receiver);  
         array_push($arr, $Receiver2);  
-        $json_string = json_encode($arr); 
-        $post_data = array(
-            "subject" => "x有序标准PHP-Html-Doc",//合同主题
-            "expireTime" => "2017-07-08",
-            "receivers" => $json_string,
-            "docName" => "标准htmlphplanguage",
-            "html" => "<html><body><p>title</p><p>9999标准在线第三方电子合同平台。企业及个人用户可通过本平台与签约方快速完成合同签署，安全、合法、有效。</p></body></html>"
-        );
-        $result = $standardSignServiceImpl->createByHtml($post_data);
-        print_r($result);
+        $json_receivers = json_encode($arr); 
+        
+        $contract = new Contract();
+        $contract->set_subject("我是亘岩的传人");//合同主题
+        $contract->set_expireTime("2017-07-08");
+        $contract->set_docName("hsjsh哈哈哈");//合同文件名称
+        $contract->set_html("<html><body><p>title</p><p>9999标准在线第三方电子合同平台。企业及个人用户可通过本平台与签约方快速完成合同签署，安全、合法、有效。</p></body></html>");
+        //$contract->set_categoryId("***");//合同分类ID,分类在契约锁云平台进行维护
+
+        //$result = $standardSignServiceImpl->createByHtml($json_receivers,$contract);
+        //print_r($result);
 		/*
 		 * 返回：Array
 		(
@@ -240,8 +230,8 @@
 		    [message] => SUCCESS
 		)*/
 		
-		//-------------------html创建合同 无序"receiveType" =>"SIMUL",
-		 $Receiver = new Receiver("PERSONAL");  
+		//-------------------html创建合同 无序
+		$Receiver = new Receiver("PERSONAL");  
         $Receiver->set_name("徐9");
         $Receiver->set_mobile("1771708999");
         $Receiver->set_authLevel("BASIC");
@@ -255,37 +245,18 @@
         $arr =array();  
         array_push($arr, $Receiver);  
         array_push($arr, $Receiver2);  
-        $json_string = json_encode($arr); 
-        $post_data = array(
-            "subject" => "无序标准PHP-Html-Doc",
-            "expireTime" => "2017-07-08",
-            "receivers" => $json_string,
-            "receiveType" =>"SIMUL",//签署顺序；SEQ（顺序 签署）、SIMUL（无序 签署 ）；默认SEQ
-            "docName" => "标准htmlphplanguage",
-            "html" => "<html><body><p>title</p><p>9999标准在线第三方电子合同平台。企业及个人用户可通过本平台与签约方快速完成合同签署，安全、合法、有效。</p></body></html>"
-        );
-        $result = $standardSignServiceImpl->createByHtml($post_data);
-        print_r($result);
+        $json_receivers = json_encode($arr); 
         
-		/*返回：
-		 * Array
-		(
-		    [code] => 0
-		    [contractId] => 2309309445623230607
-		    [documentId] => 2309309445237354636
-		    [message] => SUCCESS
-		)*/
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+        $contract = new Contract();
+        $contract->set_subject("我是亘岩的传人");//合同主题
+        $contract->set_expireTime("2017-07-08");
+        $contract->set_docName("hsjsh哈哈哈");//合同文件名称
+        $contract->set_receiveType("SIMUL");//签署顺序；SEQ（顺序 签署）、SIMUL（无序 签署 ）；默认SEQ
+        $contract->set_html("<html><body><p>title</p><p>9999标准在线第三方电子合同平台。企业及个人用户可通过本平台与签约方快速完成合同签署，安全、合法、有效。</p></body></html>");
+        //$contract->set_categoryId("***");//合同分类ID,分类在契约锁云平台进行维护
+        //$result = $standardSignServiceImpl->createByHtml($json_receivers,$contract);
+        //print_r($result);
+        
 		
 		
 		/*
@@ -294,77 +265,60 @@
 		 *---------------------------------------------------------------
 		 */
 		//--------------------------------------2.1.1公章签署
-		//*******关键字确定坐标
-        $templates = array(
-            'offsetX'=>0.01,
-            'offsetY'=>0.01
-        );
-        $post_data = array(
-            "documentId" => "2308966670288994574",//合同文档ID
-            "sealId" => "2307419306108956847",//公章ID
-            "keyword"=>"**",
-            "location" => json_encode($templates)
-        );
-        $result =  $standardSignServiceImpl->sign($post_data);
-        print_r($result);
 		
-		/*返回：
-		 * Array
-		(
-		    [message] => INVALID PARAM:documentId,2308966670288994574 is not turn to sign or has bean signed  
-		    [code] => 1005
-		)*/
+        
+        //*******非关键字
+		$documentId = "2320405076858827676";
+        $sealId = "2307419306108956847";//印章在契约锁的唯一标识
+        $acrossPage = true;//是否签骑缝章，默认为false
 		
-		
-		//*******非关键字
-		$templates = array(
-			'offsetX'=>0.5,
-		    'offsetY'=>0.5,
-			'page'=>1
-		);
-		$post_data = array(
-		    "documentId" => "2318011914124759353",//合同文档ID
-		    "sealId" => "2307419306108956847",//公章ID
-			"location" => json_encode($templates)//签署位置坐标；Json字符串
-		);
-		$result =  $standardSignServiceImpl->sign($post_data);
+		$stamper = new Stamper();
+        $stamper->set_offsetX(0.01);
+        $stamper->set_offsetY(0.01);
+        $stamper->set_page(1);
+        
+		$result =  $standardSignServiceImpl->sign($documentId,$sealId,$stamper,$acrossPage);
 		print_r($result);
 		
+		
+		//*******关键字确定坐标
+        $documentId = "2320405076858827676";
+        $sealId = "2307419306108956847";//印章在契约锁的唯一标识
+        
+        $stamper = new Stamper();
+        $stamper->set_offsetX(0.01);
+        $stamper->set_offsetY(0.01);
+		$stamper->set_keyword("市");//关键字；用来确定印章的坐标位置
+		$stamper->set_keywordIndex(1);//关键字索引，默认为1；取值范围：1到无穷大/-1到无穷小 ；1代表第一个；-1代表最后一个
+        
+        //$result =  $standardSignServiceImpl->sign($documentId,$sealId,$stamper);
+        //print_r($result);
 
+		
 		
 		
 		//--------------------------------------2.1.2法人章签署
 		//*******非关键字   法人章签署
-		$templates = array(
-			'offsetX'=>0.5,
-		    'offsetY'=>0.5,
-			'page'=>1
-		);
-		$post_data = array(
-		    "documentId" => "2318011914124759353",//合同文档ID
-			"location" => json_encode($templates)//签署位置坐标；Json字符串
-		);
-		$result =  $standardSignServiceImpl->signbylegalperson($post_data);
-		print_r($result);
+		$documentId = "2320405076858827676";
+		
+		$stamper = new Stamper();
+        $stamper->set_offsetX(0.4);
+        $stamper->set_offsetY(0.4);
+        $stamper->set_page(1);
+		
+		//$result =  $standardSignServiceImpl->signbylegalperson($documentId,$stamper);
+		//print_r($result);
 		
 		//*******关键字  法人章签署
-		$templates = array(
-		    'offsetX'=>0.01,
-		    'offsetY'=>0.05
-		);
-		$post_data = array(
-		    "documentId" => "2313162578835521540",//合同文档ID
-		    "location" => json_encode($templates),//签署位置坐标；Json字符串
-		    "keyword"=>"来到"//签署位置的关键字
-		);
-		$result =  $standardSignServiceImpl->signbylegalperson($post_data);
-		print_r($result);
+		$documentId = "2318011914124759353";
+		
+		$stamper = new Stamper();
+        $stamper->set_offsetX(0.01);
+        $stamper->set_offsetY(0.01);
+        $stamper->set_keyword("来到");
+		//$result =  $standardSignServiceImpl->signbylegalperson($documentId,$stamper);
+		//print_r($result);
 
-
-		
-		
-		
-		
 		
 		
 		/*
@@ -372,8 +326,8 @@
 		 * 3.1 查询合同详情
 		 *---------------------------------------------------------------
 		 */
-		$result =  $standardSignServiceImpl->detail('2308966670288994574');
-		print_r($result);
+		/*$result =  $standardSignServiceImpl->detail('2308966670288994574');
+		print_r($result);*/
 		/*
 		 * Array
 		(

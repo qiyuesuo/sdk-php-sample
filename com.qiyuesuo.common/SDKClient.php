@@ -1,9 +1,10 @@
 <?php
-require_once("Helper.php");
+header("Content-Type: text/html; charset=utf-8");
 class SDKClient{
 	private $accessKey;
 	private $accessSecret;
 	private $serverUrl; 
+	const SDK_VERSION = '1.0.0';
 	
 	public  function __get($property_name) 
 	{ 
@@ -28,7 +29,9 @@ class SDKClient{
 		$headers = array(
 		   'x-qys-open-accesstoken:'.$this->accessKey,
 		   'x-qys-open-signature:'.$signature,
-		   'x-qys-open-timestamp:'.$time
+		   'x-qys-open-timestamp:'.$time,
+		   'User-Agent'.'qiyuesuo-php-sdk',
+		   'version'.self::SDK_VERSION
 		);
 		$result = getHttps($url,$headers,$paramers);
 		if(strpos($serviceUrl, 'download') === false){

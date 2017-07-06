@@ -1,14 +1,11 @@
 <?php
+		header("Content-Type: text/html; charset=utf-8");
 		/** 
 		* 合同模板接口测试
 		* @author      xushuai
-		* @version     1.0 
 		*/  
-		require_once("../com.qiyuesuo.service.impl/TemplateServiceImpl.php");
-		require_once("../com.qiyuesuo.common/Receiver.php");
-		require_once("../com.qiyuesuo.common/Helper.php");
-		require_once("../com.qiyuesuo.common/SDKClient.php");
-		require_once "../com.qiyuesuo.common/Util.php";
+		require_once(dirname(__FILE__).'/'.'../com.qiyuesuo.service.impl/TemplateServiceImpl.php');
+		require_once (dirname(__FILE__).'/'.'../com.qiyuesuo.common/Util.php');
 		$url = Util::url;
 		$accessKey = Util::accessKey;
 		$accessSecret = Util::accessSecret;

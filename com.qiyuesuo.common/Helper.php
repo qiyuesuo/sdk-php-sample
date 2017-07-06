@@ -1,4 +1,5 @@
 <?php
+header("Content-Type: text/html; charset=utf-8");
 	/** 
 	* getHttps
 	* 函数的含义说明 
@@ -171,29 +172,6 @@
 					'code'=>1005,
 				    'message'=>'未指定合同文件在契约锁的唯一标识'
 				);
-			}
-			if(!array_key_exists("visible",$post_data)){
-				return  array(
-					'code'=>1005,
-				    'message'=>'未指定印章是否可见'
-				);
-			}else if($post_data['visible']===true){
-				if(!array_key_exists("sealImageBase64",$post_data)){
-					return  array(
-						'code'=>1005,
-					    'message'=>'未指定印章图片的base64格式数据'
-					);
-				}
-			}
-			
-			if(array_key_exists("location",$post_data)){
-				$array_location = json_decode($post_data['location'], true);
-				if(!array_key_exists("page",$array_location)||!array_key_exists("offsetX",$array_location)||!array_key_exists("offsetY",$array_location)){
-					return  array(
-						'code'=>1005,
-					    'message'=>'印章坐标位置错误'
-					);
-				}
 			}
 			
 			if($type==='signbycompany'){

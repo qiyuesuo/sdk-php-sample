@@ -1,19 +1,46 @@
 <?php
-require_once("BaseSignService.php");
-interface RemoteSignService extends BaseSignService{
+interface RemoteSignService{
+	/**
+	 *  由pdf文件创建合同
+	 */
+	function createByLocal(Contract $contract);
+	/**
+	 * 由合同模板创建合同
+	 */
+	function createByTemplate(Contract $contract);
+	/**
+	 * 由html创建合同
+	 */
+	function createByHtml(Contract $contract);
 	
 	/**
-	 * 企业用户签署
+	 * 企业用户签署 带签名外观
 	 */
-	function signBycompany($post_data);
+	function signBycompany($documentId,Company $company,$sealImageBase64,Stamper $stamper);
+	
 	/**
-	 * 个人用户签署
+	 * 企业用户签署 无签名外观
 	 */
-	function signByPerson($post_data);
+	function signBycompanyNoVisible($documentId,Company $company);
+	
 	/**
-	 * 运营方签署
+	 * 个人用户签署 带签名外观
 	 */
-	function signByPlatform($post_data);
+	function signByPerson($documentId,Person $person,$sealImageBase64,Stamper $stamper);
+	
+	/**
+	 * 个人用户签署 无签名外观
+	 */
+	function signByPersonNoVisible($documentId,Person $person);
+	
+	/**
+	 * 运营方签署  带签名外观
+	 */
+	function signByPlatform($documentId,$sealId,Stamper $stamper);
+	/**
+	 * 运营方签署  无签名外观
+	 */
+	function signByPlatNoVisible($documentId);
 	/**
 	 *  完成签署
 	 *  @param $documentId 文档id
@@ -28,20 +55,22 @@ interface RemoteSignService extends BaseSignService{
 	 * 下载合同清单
 	 * @param $documentId 文档id
 	 */
-	//function downloadZip($documentId,$path);
 	function downloadZip($documentId);
 	/**
 	 * 下载单个合同文件
 	 * @param $documentId 文档id
 	 */
-	//function downloadPdf($documentId,$path);
 	function downloadPdf($documentId);
 	/**
-	 * 获取签署页面链接
+	 * 获取公司签署页面链接
 	 */
-	function signUrl($post_data);
+	function signUrlCompany($documentId,$sealImageBase64,$successUrl,$operation,Company $company,Stamper $stamper);
+	/**
+	 * 获取个人签署页面链接
+	 */
+	function signUrlPerson($documentId,$sealImageBase64,$successUrl,$operation,Person $person,Stamper $stamper);
 	/**
 	 * 获取查看合同页面的链接
 	 */
-	function viewUrl($post_data);
+	function viewUrl($documentId);
 }

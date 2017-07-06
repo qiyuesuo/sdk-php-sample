@@ -1,11 +1,10 @@
 <?php
-header("content-type:text/html; charset=utf-8");  
-
+header("Content-Type: text/html; charset=utf-8");
 /** 
 * 合同接收人信息
 */ 
 class Receiver {
-	public $type;//接收人类型  PERSONAL, COMPANY,PLATFORM
+	public $type;//接收人类型  PERSONAL（个人），COMPANY（公司），PLATFORM(平台）
 	public $name;//个人姓名（或公司名称）
 	public $mobile;//个人手机号/公司经办人手机号
 	public $ordinal;//签署顺序；从1开始
