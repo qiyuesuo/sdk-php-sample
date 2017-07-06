@@ -42,9 +42,9 @@ Notes
 =======
 示例代码中的参数均为测试环境参数，实际运行时需要将相关参数修改为生产环境参数，或沙箱测试环境参数。
 
- [Util.php](https://github.com/qiyuesuo/sdk-php-sample/blob/master/com.qiyuesuo.Test/Util.php).是对接方需要填写的基本参数信息。
+ [Util.php](https://github.com/qiyuesuo/sdk-php-sample/blob/master/com.qiyuesuo.common/Util.php).是对接方需要填写的基本参数信息。
 
-phpSDk.phar 是需要引用的包
+
 
 扫码关注契约锁公众号,了解契约锁最新动态。
 

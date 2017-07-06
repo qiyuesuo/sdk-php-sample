@@ -1,14 +1,15 @@
 <?php
 header("Content-Type: text/html; charset=utf-8");
 class Company{
-	public $name;
-	public $registerNo;
-	public $email;
-	public $telephone;
-	public $address;
-	public $contact;
-	public $legalPerson;
-	public $legalPersonId;
+	public $name;//企业名称
+	public $registerNo;//工商注册号
+	public $email;//公司邮箱
+	public $telephone;//联系电话
+	public $address;//公司地址
+	public $contact;//联系人姓名
+	
+	public $legalPerson;//法人姓名
+	public $legalPersonId;//法人证件号
 	
 	//__set()方法用来设置私有属性 
 	public function __set($name,$value){ 

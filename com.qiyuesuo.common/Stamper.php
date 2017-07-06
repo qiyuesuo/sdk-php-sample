@@ -1,11 +1,11 @@
 <?php
 header("Content-Type: text/html; charset=utf-8");
 class Stamper{
-	private $offsetX;
-	private $offsetY;
-	private $keyword;
-	private $keywordIndex;
-	private $page;
+	private $offsetX;//横坐标
+	private $offsetY;//纵坐标
+	private $keyword;//关键字；用来确定印章的坐标位置
+	private $keywordIndex;//关键字索引，默认为1；1代表第一个；-1代表最后一个
+	private $page;//印章所在页码
 	
 	public function set_offsetX($offsetX) {
         $this->offsetX=$offsetX;
