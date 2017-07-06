@@ -20,8 +20,6 @@ require_once(dirname(__FILE__).'/'."SDKClient.php");
 class Util {
     const   url = "https://openapi.qiyuesuo.me";
     const 	accessKey = "0VPomO22uY";
-	const 	accessSecret = "TckV2xbfKJU0iN37v2anFt22NHFlne";
-/*    const   url = "http://192.168.61.48:9083";
-	const 	accessKey = "TTmCfJAnrh";
-	const 	accessSecret = "ucB7QPqOivTkSFjQo97UJyTfYAYeuB";*/
+	const 	accessSecret = "TckV2xbfKJU0iN37v2an******";
+
 }
