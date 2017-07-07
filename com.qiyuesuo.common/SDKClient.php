@@ -4,7 +4,7 @@ class SDKClient{
 	private $accessKey;
 	private $accessSecret;
 	private $serverUrl; 
-	const SDK_VERSION = '1.0.0';
+	const SDK_VERSION = 'PHP-1.0.0';
 	
 	public  function __get($property_name) 
 	{ 
