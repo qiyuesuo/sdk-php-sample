@@ -20,22 +20,22 @@ Usage
 #### 印章接口
 印章创建查询相关操作接口。
 
-详情请参考： [SealTest.php](https://github.com/qiyuesuo/sdk-php-sample/blob/master/com.qiyuesuo.Test/SealTest.php).
+详情请参考： [SealTest.php](https://github.com/qiyuesuo/sdk-php-sample/blob/master/com.qiyuesuo.test/SealTest.php).
 
 #### 远程签
 将文件上传的云平台进行签署，或者使用云平台的模板进行签署。
 
-详情请参考： [RemoteSignTest.php](https://github.com/qiyuesuo/sdk-php-sample/blob/master/com.qiyuesuo.Test/RemoteSignTest.php).
+详情请参考： [RemoteSignTest.php](https://github.com/qiyuesuo/sdk-php-sample/blob/master/com.qiyuesuo.test/RemoteSignTest.php).
 
 #### 标准签
 发起方通过接口发起合同签署合同，接收方登录契约锁云平台进行签署。
 
-详情请参考： [StandardSignTest.php](https://github.com/qiyuesuo/sdk-php-sample/blob/master/com.qiyuesuo.Test/StandardSignTest.php).
+详情请参考： [StandardSignTest.php](https://github.com/qiyuesuo/sdk-php-sample/blob/master/com.qiyuesuo.test/StandardSignTest.php).
 
 #### 模板接口
 查询合同模板信息。
 
-详情请参考： [TemplateTest.php](https://github.com/qiyuesuo/sdk-php-sample/blob/master/com.qiyuesuo.Test/TemplateTest.php).
+详情请参考： [TemplateTest.php](https://github.com/qiyuesuo/sdk-php-sample/blob/master/com.qiyuesuo.test/TemplateTest.php).
 
 Notes
 =======
