@@ -13,7 +13,6 @@ php 版本说明：PHP5.6及以上 ；
 
 ============
 
-前往 [契约锁开放平台](http://open.qiyuesuo.com/download)下载PHP SDK及依赖包，并添加到项目中。
 
 Usage
 =====
@@ -47,10 +46,15 @@ Notes
 
 
 快捷测试（直接看到签署效果，但是前提是各个函数部分的参数已经配好）
+
 =======
+
 标准签  和  远程签  提供 快捷 接口 测试的例子：
+
 	com.qiyuesuo.test.fast包下：
+	
 	标准签 参考 [Standard.test.php](https://github.com/qiyuesuo/sdk-php-sample/blob/master/com.qiyuesuo.test.fast/Standard.test.php).
+	
 	远程签 参考 [Remote.test.php](https://github.com/qiyuesuo/sdk-php-sample/blob/master/com.qiyuesuo.test.fast/Standard.test.php).
 
 扫码关注契约锁公众号,了解契约锁最新动态。
