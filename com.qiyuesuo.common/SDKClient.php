@@ -30,8 +30,8 @@ class SDKClient{
 		   'x-qys-open-accesstoken:'.$this->accessKey,
 		   'x-qys-open-signature:'.$signature,
 		   'x-qys-open-timestamp:'.$time,
-		   'User-Agent'.'qiyuesuo-php-sdk',
-		   'version'.self::SDK_VERSION
+		   'User-Agent:'.'qiyuesuo-php-sdk',
+		   'version:'.self::SDK_VERSION
 		);
 		$result = getHttps($url,$headers,$paramers);
 		if(strpos($serviceUrl, 'download') === false){
