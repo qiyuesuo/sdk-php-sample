@@ -6,11 +6,8 @@
 		*/  
 		require_once(dirname(__FILE__).'/'.'../com.qiyuesuo.service.impl/TemplateServiceImpl.php');
 		require_once (dirname(__FILE__).'/'.'../com.qiyuesuo.common/Util.php');
-		$url = Util::url;
-		$accessKey = Util::accessKey;
-		$accessSecret = Util::accessSecret;
-		$SDk = new SDKClient($accessKey, $accessSecret, $url);
-		$templateServiceImpl = new TemplateServiceImpl($SDk);
+
+		$templateServiceImpl = new TemplateServiceImpl(Util::getSDk());
 		
 		//>>>>>>>>>>>>>>>>>>1. 查询合同模板>>>>>>>>>>>>>>>>>>
 		$result = $templateServiceImpl->queryTemplate();

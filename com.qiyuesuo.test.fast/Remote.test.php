@@ -7,18 +7,11 @@
 		require_once(dirname(__FILE__).'/'.'../com.qiyuesuo.common/Util.php');
 		require_once(dirname(__FILE__).'/'.'../com.qiyuesuo.test.fast/Remote.func.php');
 		
-		$url = Util::url;
-		$accessKey = Util::accessKey;
-		$accessSecret = Util::accessSecret;
+		$remoteSignServiceImpl = new RemoteSignServiceImpl(Util::getSDk());
 		
-		$SDk = new SDKClient($accessKey, $accessSecret, $url);
-		$remoteSignServiceImpl = new RemoteSignServiceImpl($SDk);
+		$documentId = createByLocal($remoteSignServiceImpl);
 		
-		
-		
-		//$documentId = createByLocal($remoteSignServiceImpl);
-		
-		$documentId = createByTemplate($remoteSignServiceImpl);
+		//$documentId = createByTemplate($remoteSignServiceImpl);
 		
 		//$documentId = createByHtml($remoteSignServiceImpl);
 		
@@ -28,10 +21,13 @@
 		
 		signByPerson($documentId,$remoteSignServiceImpl);
 		
-		complete($documentId,$remoteSignServiceImpl);
 		
 		detail($documentId,$remoteSignServiceImpl);
 		
-		signUrlPerson($documentId,$remoteSignServiceImpl);
+		//signUrlPerson($documentId,$remoteSignServiceImpl);
+		
+		//signUrlCompany($documentId,$remoteSignServiceImpl);
+		
+		complete($documentId,$remoteSignServiceImpl);
 		
 		viewUrl($documentId,$remoteSignServiceImpl);

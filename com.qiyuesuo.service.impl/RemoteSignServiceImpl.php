@@ -16,6 +16,7 @@ class RemoteSignServiceImpl implements RemoteSignService{
 	const CONTRACT_DETAIL="/remote/contract/detail";
 	const SIGN_URL="/remote/contract/signurl";
 	const VIEW_URL="/remote/contract/viewurl";
+	const CALLBACKCHECKOUT_URL="/remote/contract/callbackcheckout";
 	
 	private $SDk;
 	function __construct($SDk){
@@ -75,13 +76,14 @@ class RemoteSignServiceImpl implements RemoteSignService{
 	/**
 	 * 运营方签署  带签名外观
 	 */
-	public function signByPlatform($documentId,$sealId,Stamper $stamper){
+	 public function signByPlatform($documentId,$sealId,Stamper $stamper,$acrossPagePosition){
 		$templates = array(
             'offsetX'=>$stamper->get_offsetX(),
             'offsetY'=>$stamper->get_offsetY(),
             'page'=>$stamper->get_page()
         );
 		$post_data = array(
+			"acrossPagePosition"=>$acrossPagePosition,//骑缝章
             "documentId" => $documentId,//合同文件在契约锁的唯一标识
             "visible" => true,//带签名外观,visible:印章是否可见
             "sealId" => $sealId,//印章在契约锁的唯一标识
@@ -120,13 +122,14 @@ class RemoteSignServiceImpl implements RemoteSignService{
 	/**
 	 * 企业用户签署 带签名外观
 	 */
-	public function signBycompany($documentId,Company $company,$sealImageBase64,Stamper $stamper){
+	 public function signBycompany($documentId,Company $company,$sealImageBase64,Stamper $stamper,$acrossPagePosition){
 		$templates = array(
 			'offsetX'=>$stamper->get_offsetX(),
             'offsetY'=>$stamper->get_offsetY(),
             'page'=>$stamper->get_page()
 		);
 		$post_data = array(
+			"acrossPagePosition"=>$acrossPagePosition,//骑缝章
 		    "documentId" => $documentId,//合同文件在契约锁的唯一标识
 		    "visible" => true,
 			"sealImageBase64" =>$sealImageBase64,
@@ -258,7 +261,7 @@ class RemoteSignServiceImpl implements RemoteSignService{
 		return $output;
 	}
 	
-	function signUrlCompany($documentId,$sealImageBase64,$successUrl,$operation,Company $company,Stamper $stamper){
+	function signUrlCompany($documentId,$sealImageBase64,$successUrl,$signCallBackUrl,$operation,Company $company,Stamper $stamper,$acrossPagePosition){
 		$templates = array(
 			'offsetX'=>$stamper->get_offsetX(),
             'offsetY'=>$stamper->get_offsetY(),
@@ -277,6 +280,8 @@ class RemoteSignServiceImpl implements RemoteSignService{
 			"operation" => $operation,//操作类型；SIGN（签署），SIGNWITHPIN（手机验证签署）
 			"signer" => json_encode($Signer),//签署人；JSON字符串
 			"sealImageBase64" =>$sealImageBase64,
+			"signCallBackUrl" =>$signCallBackUrl,//回调地址
+			"acrossPagePosition" => $acrossPagePosition,//骑缝章纵坐标百分比
 			"location" => json_encode($templates),//印章位置：非空时印章位置固定；为空时签署人可以拖动印章；
 			"successUrl" => $successUrl//签署成功后跳转的url
 		);
@@ -293,7 +298,7 @@ class RemoteSignServiceImpl implements RemoteSignService{
 	
 	
 	
-	function signUrlPerson($documentId,$sealImageBase64,$successUrl,$operation,Person $person,Stamper $stamper){
+	function signUrlPerson($documentId,$sealImageBase64,$successUrl,$signCallBackUrl,$operation,Person $person,Stamper $stamper){
 		$templates = array(
 			'offsetX'=>$stamper->get_offsetX(),
             'offsetY'=>$stamper->get_offsetY(),
@@ -313,6 +318,7 @@ class RemoteSignServiceImpl implements RemoteSignService{
 			"operation" => $operation,//操作类型；SIGN（签署），SIGNWITHPIN（手机验证签署）
 			"signer" => json_encode($Signer),//签署人；JSON字符串
 			"sealImageBase64" =>$sealImageBase64,
+			"signCallBackUrl" =>$signCallBackUrl,//回调地址
 			"location" => json_encode($templates),//印章位置：非空时印章位置固定；为空时签署人可以拖动印章；
 			"successUrl" => $successUrl//签署成功后跳转的url
 		);
@@ -335,5 +341,14 @@ class RemoteSignServiceImpl implements RemoteSignService{
 		$post_data = http_build_query($post_data);
 		return $this->SDk->service($serviceUrl,$post_data);
 		
+	}
+
+	function callbackcheckout($signCallBackUrl){
+		$post_data = array(
+		    "signCallBackUrl" => $signCallBackUrl//String回调地址
+		);
+		$serviceUrl = self::CALLBACKCHECKOUT_URL;
+		$post_data = http_build_query($post_data);
+		return $this->SDk->service($serviceUrl,$post_data);
 	}
 }

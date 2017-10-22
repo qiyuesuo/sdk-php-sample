@@ -6,12 +6,8 @@
 		require_once(dirname(__FILE__).'/'.'../com.qiyuesuo.service.impl/StandardSignServiceImpl.php');
 		require_once (dirname(__FILE__).'/'.'../com.qiyuesuo.common/Util.php');
 		require_once(dirname(__FILE__).'/'.'../com.qiyuesuo.test.fast/Standard.func.php');
-		$url = Util::url;
-		$accessKey = Util::accessKey;
-		$accessSecret = Util::accessSecret;
 		
-		$SDk = new SDKClient($accessKey, $accessSecret, $url);
-		$standardSignServiceImpl = new StandardSignServiceImpl($SDk);
+		$standardSignServiceImpl = new StandardSignServiceImpl(Util::getSDk());
 		
 		
 		$documentId = createByLocal($standardSignServiceImpl);//无序  本地PDF文件创建合同

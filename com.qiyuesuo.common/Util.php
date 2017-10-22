@@ -8,7 +8,7 @@ header("Content-Type: text/html; charset=utf-8");
 *
 *https://openapi.qiyuesuo.me 表示的是测试环境
 *https://openapi.qiyuesuo.com 表示的是生产环境
-* @version     1.0 
+* @version     1.0.1 
 */
 require_once(dirname(__FILE__).'/'."Contract.php");
 require_once(dirname(__FILE__).'/'."Company.php");
@@ -19,7 +19,14 @@ require_once(dirname(__FILE__).'/'."Helper.php");
 require_once(dirname(__FILE__).'/'."SDKClient.php");
 class Util {
     const   url = "https://openapi.qiyuesuo.me";
-    const 	accessKey = "0VPomO22uY";
-	const 	accessSecret = "TckV2xbfKJU0iN37v2an******";
+    const 	accessKey = "0VPomO22**";
+    const 	accessSecret = "nOcih5AtxnD6vCmYLWi42iz2VJM0**";
+    public static  function getSDk(){
+		$url = self::url;
+		$accessKey = self::accessKey;
+		$accessSecret = self::accessSecret;
+		$SDk = new SDKClient($accessKey, $accessSecret, $url);
+		return $SDk;
+	}
 
 }

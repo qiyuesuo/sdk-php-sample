@@ -16,8 +16,7 @@ interface RemoteSignService{
 	/**
 	 * 企业用户签署 带签名外观
 	 */
-	function signBycompany($documentId,Company $company,$sealImageBase64,Stamper $stamper);
-	
+	function signBycompany($documentId,Company $company,$sealImageBase64,Stamper $stamper,$acrossPagePosition);
 	/**
 	 * 企业用户签署 无签名外观
 	 */
@@ -36,7 +35,7 @@ interface RemoteSignService{
 	/**
 	 * 运营方签署  带签名外观
 	 */
-	function signByPlatform($documentId,$sealId,Stamper $stamper);
+	function signByPlatform($documentId,$sealId,Stamper $stamper,$acrossPagePosition);
 	/**
 	 * 运营方签署  无签名外观
 	 */
@@ -64,13 +63,17 @@ interface RemoteSignService{
 	/**
 	 * 获取公司签署页面链接
 	 */
-	function signUrlCompany($documentId,$sealImageBase64,$successUrl,$operation,Company $company,Stamper $stamper);
-	/**
-	 * 获取个人签署页面链接
-	 */
-	function signUrlPerson($documentId,$sealImageBase64,$successUrl,$operation,Person $person,Stamper $stamper);
+	 function signUrlCompany($documentId,$sealImageBase64,$successUrl,$signCallBackUrl,$operation,Company $company,Stamper $stamper,$acrossPagePosition);
+	 /**
+	  * 获取个人签署页面链接
+	  */
+	 function signUrlPerson($documentId,$sealImageBase64,$successUrl,$signCallBackUrl,$operation,Person $person,Stamper $stamper);
 	/**
 	 * 获取查看合同页面的链接
 	 */
 	function viewUrl($documentId);
+	/**
+	 * 测试回调地址是否可用
+	 */
+	 function callbackcheckout($signCallBackUrl);
 }

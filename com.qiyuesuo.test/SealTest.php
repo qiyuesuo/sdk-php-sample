@@ -8,11 +8,7 @@
 		require_once(dirname(__FILE__).'/'.'../com.qiyuesuo.service.impl/SealServiceImpl.php');
 		require_once (dirname(__FILE__).'/'.'../com.qiyuesuo.common/Util.php');
 		
-		$url = Util::url;
-		$accessKey = Util::accessKey;
-		$accessSecret = Util::accessSecret;
-		$SDk = new SDKClient($accessKey, $accessSecret, $url);
-		$sealServiceImpl = new SealServiceImpl($SDk);
+		$sealServiceImpl = new SealServiceImpl(Util::getSDk());
 		/*
 		 *---------------------------------------------------------------
 		 * 1 获取平台印章
@@ -55,7 +51,7 @@
 		 * 3.生成个人电子印章
 		 *---------------------------------------------------------------
 		 */
-	    print_r($sealServiceImpl->generatePersonalSeal('丁武'));
+	    //print_r($sealServiceImpl->generatePersonalSeal('丁武'));
 	    
 		
 		

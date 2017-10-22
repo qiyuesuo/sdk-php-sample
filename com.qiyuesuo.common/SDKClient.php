@@ -4,7 +4,7 @@ class SDKClient{
 	private $accessKey;
 	private $accessSecret;
 	private $serverUrl; 
-	const SDK_VERSION = 'PHP-1.0.0';
+	const SDK_VERSION = 'PHP-1.0.1';
 	
 	public  function __get($property_name) 
 	{ 
@@ -23,17 +23,25 @@ class SDKClient{
     } 
     
 	public function service($serviceUrl,$paramers) {
-		$url = $this->serverUrl.$serviceUrl;
-		$time = get_millistime();
-		$signature = md5($this->accessKey.$this->accessSecret.$time);
-		$headers = array(
-		   'x-qys-open-accesstoken:'.$this->accessKey,
-		   'x-qys-open-signature:'.$signature,
-		   'x-qys-open-timestamp:'.$time,
-		   'User-Agent:'.'qiyuesuo-php-sdk',
-		   'version:'.self::SDK_VERSION
-		);
-		$result = getHttps($url,$headers,$paramers);
+		$flag=1; 
+		while($flag<=3) {
+			$url = $this->serverUrl.$serviceUrl;
+			$time = get_millistime();
+			$signature = md5(str_replace(' ', '',$this->accessKey.$this->accessSecret.$time));
+			$headers = array(
+			   'x-qys-open-accesstoken:'.$this->accessKey,
+			   'x-qys-open-signature:'.$signature,
+			   'x-qys-open-timestamp:'.$time,
+			   'User-Agent:'.'qiyuesuo-php-sdk',
+			   'version:'.self::SDK_VERSION
+			);
+			$result = getHttps($url,$headers,$paramers);
+			if($result){
+				break;
+			}
+			$flag++;
+		}
+		
 		if(strpos($serviceUrl, 'download') === false){
 			$result = json_decode($result, true);
 			if(!$result){
@@ -50,6 +58,8 @@ class SDKClient{
 			         
 			}
 		}
+		
+		
 		return $result;
     }
     
