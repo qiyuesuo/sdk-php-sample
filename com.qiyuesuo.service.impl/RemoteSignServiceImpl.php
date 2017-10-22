@@ -76,14 +76,14 @@ class RemoteSignServiceImpl implements RemoteSignService{
 	/**
 	 * 运营方签署  带签名外观
 	 */
-	 public function signByPlatform($documentId,$sealId,Stamper $stamper,$acrossPagePosition){
+	 public function signByPlatform($documentId,$sealId,Stamper $stamper){
 		$templates = array(
             'offsetX'=>$stamper->get_offsetX(),
             'offsetY'=>$stamper->get_offsetY(),
             'page'=>$stamper->get_page()
         );
 		$post_data = array(
-			"acrossPagePosition"=>$acrossPagePosition,//骑缝章
+			"acrossPagePosition"=>$stamper->get_acrossPagePosition(),//骑缝章
             "documentId" => $documentId,//合同文件在契约锁的唯一标识
             "visible" => true,//带签名外观,visible:印章是否可见
             "sealId" => $sealId,//印章在契约锁的唯一标识
@@ -122,14 +122,14 @@ class RemoteSignServiceImpl implements RemoteSignService{
 	/**
 	 * 企业用户签署 带签名外观
 	 */
-	 public function signBycompany($documentId,Company $company,$sealImageBase64,Stamper $stamper,$acrossPagePosition){
+	 public function signBycompany($documentId,Company $company,$sealImageBase64,Stamper $stamper){
 		$templates = array(
 			'offsetX'=>$stamper->get_offsetX(),
             'offsetY'=>$stamper->get_offsetY(),
             'page'=>$stamper->get_page()
 		);
 		$post_data = array(
-			"acrossPagePosition"=>$acrossPagePosition,//骑缝章
+			"acrossPagePosition"=>$stamper->get_acrossPagePosition(),//骑缝章
 		    "documentId" => $documentId,//合同文件在契约锁的唯一标识
 		    "visible" => true,
 			"sealImageBase64" =>$sealImageBase64,
@@ -261,7 +261,7 @@ class RemoteSignServiceImpl implements RemoteSignService{
 		return $output;
 	}
 	
-	function signUrlCompany($documentId,$sealImageBase64,$successUrl,$signCallBackUrl,$operation,Company $company,Stamper $stamper,$acrossPagePosition){
+	function signUrlCompany($documentId,$sealImageBase64,$successUrl,$signCallBackUrl,$operation,Company $company,Stamper $stamper){
 		$templates = array(
 			'offsetX'=>$stamper->get_offsetX(),
             'offsetY'=>$stamper->get_offsetY(),
@@ -281,7 +281,7 @@ class RemoteSignServiceImpl implements RemoteSignService{
 			"signer" => json_encode($Signer),//签署人；JSON字符串
 			"sealImageBase64" =>$sealImageBase64,
 			"signCallBackUrl" =>$signCallBackUrl,//回调地址
-			"acrossPagePosition" => $acrossPagePosition,//骑缝章纵坐标百分比
+			"acrossPagePosition" => $stamper->get_acrossPagePosition(),//骑缝章纵坐标百分比
 			"location" => json_encode($templates),//印章位置：非空时印章位置固定；为空时签署人可以拖动印章；
 			"successUrl" => $successUrl//签署成功后跳转的url
 		);

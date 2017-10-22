@@ -24,10 +24,10 @@
 		
 		detail($documentId,$remoteSignServiceImpl);
 		
-		//signUrlPerson($documentId,$remoteSignServiceImpl);
+		signUrlPerson($documentId,$remoteSignServiceImpl);
 		
-		//signUrlCompany($documentId,$remoteSignServiceImpl);
+		signUrlCompany($documentId,$remoteSignServiceImpl);
 		
-		complete($documentId,$remoteSignServiceImpl);
+		//complete($documentId,$remoteSignServiceImpl);
 		
-		viewUrl($documentId,$remoteSignServiceImpl);
+		//viewUrl($documentId,$remoteSignServiceImpl);

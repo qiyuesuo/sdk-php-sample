@@ -16,7 +16,7 @@ interface RemoteSignService{
 	/**
 	 * 企业用户签署 带签名外观
 	 */
-	function signBycompany($documentId,Company $company,$sealImageBase64,Stamper $stamper,$acrossPagePosition);
+	function signBycompany($documentId,Company $company,$sealImageBase64,Stamper $stamper);
 	/**
 	 * 企业用户签署 无签名外观
 	 */
@@ -35,7 +35,7 @@ interface RemoteSignService{
 	/**
 	 * 运营方签署  带签名外观
 	 */
-	function signByPlatform($documentId,$sealId,Stamper $stamper,$acrossPagePosition);
+	function signByPlatform($documentId,$sealId,Stamper $stamper);
 	/**
 	 * 运营方签署  无签名外观
 	 */
@@ -63,7 +63,7 @@ interface RemoteSignService{
 	/**
 	 * 获取公司签署页面链接
 	 */
-	 function signUrlCompany($documentId,$sealImageBase64,$successUrl,$signCallBackUrl,$operation,Company $company,Stamper $stamper,$acrossPagePosition);
+	 function signUrlCompany($documentId,$sealImageBase64,$successUrl,$signCallBackUrl,$operation,Company $company,Stamper $stamper);
 	 /**
 	  * 获取个人签署页面链接
 	  */
