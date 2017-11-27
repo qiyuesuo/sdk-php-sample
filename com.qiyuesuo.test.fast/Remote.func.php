@@ -25,22 +25,39 @@
 				'name'=>'bob',
 			    'mobile'=>'13487457854'
 			);
-		    $subject = "remote-php-createByTemplate";//合同主题
-		    $expireTime = "2019-07-08";//合同过期时间；过期未结束签署，则作废，不传该参数则默认30天后过期。
-			$templateId = "2305581810964336993";//合同模板ID；合同模板在契约锁云平台维护，请到契约锁云平台查看模板ID
-		    $docName = "王府井";//合同文件名称
-			$templateParams = json_encode($templates);//合同模版参数，键值对形式字符串
 			
-			$contract = new Contract();
-			$contract->set_subject($subject);
-			$contract->set_expireTime($expireTime);
-			$contract->set_templateId($templateId);
-			$contract->set_docName($docName);
-			$contract->set_templateParams($templateParams);
+			//校验模板参数的类型标识
+			$flag = true;
 			
-			$result = $remoteSignServiceImpl->createByTemplate($contract);
-			$documentId = $result['documentId'];
-			return $documentId;
+			foreach($templates as $key => $value){
+				if(!is_string($value)){
+					$flag = false;
+					break;
+				}
+			}
+			
+			if($flag){
+				$subject = "remote-php-createByTemplate";//合同主题
+			    $expireTime = "2019-07-08";//合同过期时间；过期未结束签署，则作废，不传该参数则默认30天后过期。
+				$templateId = "2305581810964336993";//合同模板ID；合同模板在契约锁云平台维护，请到契约锁云平台查看模板ID
+			    $docName = "王府井";//合同文件名称
+				$templateParams = json_encode($templates);//合同模版参数，键值对形式字符串
+				
+				$contract = new Contract();
+				$contract->set_subject($subject);
+				$contract->set_expireTime($expireTime);
+				$contract->set_templateId($templateId);
+				$contract->set_docName($docName);
+				$contract->set_templateParams($templateParams);
+				
+				$result = $remoteSignServiceImpl->createByTemplate($contract);
+				$documentId = $result['documentId'];
+				return $documentId;
+			}else{
+				throw new Exception('模板参数$templates的值需要是字符串'); 
+			}
+		    
+			
 		}
 		
 		function createByHtml($remoteSignServiceImpl){
