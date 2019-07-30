@@ -12,31 +12,6 @@ php SDK提供了契约锁API的请求封装、摘要签名、响应解释等功�
 php 版本说明：PHP5.6及以上 ； 
 
 
-
-
-Usage
-=====
-
-#### 印章接口
-印章创建查询相关操作接口。
-
-详情请参考： [SealTest.php](https://github.com/qiyuesuo/sdk-php-sample/blob/master/com.qiyuesuo.test/SealTest.php).
-
-#### 远程签
-将文件上传的云平台进行签署，或者使用云平台的模板进行签署。
-
-详情请参考： [RemoteSignTest.php](https://github.com/qiyuesuo/sdk-php-sample/blob/master/com.qiyuesuo.test/RemoteSignTest.php).
-
-#### 标准签
-发起方通过接口发起合同签署合同，接收方登录契约锁云平台进行签署。
-
-详情请参考： [StandardSignTest.php](https://github.com/qiyuesuo/sdk-php-sample/blob/master/com.qiyuesuo.test/StandardSignTest.php).
-
-#### 模板接口
-查询合同模板信息。
-
-详情请参考： [TemplateTest.php](https://github.com/qiyuesuo/sdk-php-sample/blob/master/com.qiyuesuo.test/TemplateTest.php).
-
 Notes
 =======
 示例代码中的参数均为测试环境参数，实际运行时需要将相关参数修改为生产环境参数，或沙箱测试环境参数。
@@ -47,17 +22,17 @@ Notes
 
 快捷测试（直接看到签署效果，但是前提是各个函数部分的参数已经配好）
 =======
-标准签  和  远程签  提供 快捷 接口 测试的例子：
+根据业务分类配置发起合同  和  自定义创建合同  提供 快捷 接口 测试的例子：
 
-com.qiyuesuo.test.fast包下：
+qiyuesuo.simple.test包下：
 	
-标准签 参考
+根据业务分类配置创建合同 参考
 
- [Standard.test.php](https://github.com/qiyuesuo/sdk-php-sample/blob/master/com.qiyuesuo.test.fast/Standard.test.php).
+ [ContractCreateByCategory.test.php](https://github.com/qiyuesuo/sdk-php-sample/blob/master/com.qiyuesuo.simple.test/ContractCreateByCategory.test.php).
 	
-远程签 参考
+自定义创建合同 参考
 
- [Remote.test.php](https://github.com/qiyuesuo/sdk-php-sample/blob/master/com.qiyuesuo.test.fast/Standard.test.php).
+ [ContractCreate.test.php](https://github.com/qiyuesuo/sdk-php-sample/blob/master/com.qiyuesuo.simple.test/ContractCreate.test.php).
 
 扫码关注契约锁公众号,了解契约锁最新动态。
 
