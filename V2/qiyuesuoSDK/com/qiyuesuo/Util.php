@@ -57,8 +57,8 @@ require_once (dirname(__FILE__).'/sdk/request/'."TemplatePageRequest.php");
 
 class Util {
     const url = "https://openapi.qiyuesuo.me";
-    const accessKey = "OB4Pq2R9F4";
-    const accessSecret = "amti9gQ5IZDHX3sfgltslP9Xc82N7o";
+    const accessKey = "";
+    const accessSecret = "";
 
     public static function getSDk() {
         $url = self::url;

@@ -17,7 +17,6 @@ header("Content-Type: text/html; charset=utf-8");
     }
 
     function doServiceWithJson($url, $json, $headers, $connectTimeout, $readTimeout){
-        print_r($json);
         $flag=1;
         while($flag <= HttpConnection::RENNECT_TIMES) {
             try {

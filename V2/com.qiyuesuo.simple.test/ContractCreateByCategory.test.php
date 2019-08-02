@@ -42,11 +42,6 @@ header("Content-Type: text/html; charset=utf-8");
     if($result == false) {
         exit(0);
     }
-    /** 审批合同 */
-    $result = testContractAudit($contractId, $bizId, $sdkClient);
-    if($result == false) {
-        exit(0);
-    }
     /** 法人章签署 */
     $result = testLpSign($contractId, $bizId, $documentId1, $sdkClient);
     if($result == false) {
