@@ -7,22 +7,12 @@ header("Content-Type: text/html; charset=utf-8");
     function testDraftContract(SDKClient $sdkClient){
         /** 合同基本信息 */
         $contract = new Contract();
-//        $contract->setBizId("111222333");
         $contract->setSubject("V2合同");
-        $contract->setDescription("合同描述");
-        $contract->setSn("123321");
-        $contract->setExpireTime("2019-08-25 00:00:00");
-        $contract->setOrdinal(true);
         $contract->setSend(false);
 
         $category = new Category();
         $category->setName("V2");
         $contract->setCategory($category);
-
-        $creator = new User();
-        $creator->setContact("18435186216");
-        $creator->setContactType("MOBILE");
-        $contract->setCreator($creator);
 
         /**公司签署方**/
         $companySignatory = new Signatory();
@@ -50,20 +40,6 @@ header("Content-Type: text/html; charset=utf-8");
         array_push($companyOperators, $companyOperator);
         $companyAction->setOperators($companyOperators);
 
-        /**审批动作**/
-        $auditAction = new Action();
-        $auditAction->setType("AUDIT");
-        $auditAction->setName("审批动作");
-        $auditAction->setSerialNo(3);
-        /**审批操作人**/
-        $auditOperator = new User();
-        $auditOperator->setContact("18435186216");
-        $auditOperator->setContactType("MOBILE");
-
-        $auditOperators = array();
-        array_push($auditOperators, $auditOperator);
-        $auditAction->setOperators($auditOperators);
-
         /**法人签署动作**/
         $lpAction = new Action();
         $lpAction->setType("LP");
@@ -74,8 +50,6 @@ header("Content-Type: text/html; charset=utf-8");
         /**公司签署方设置公章签署动作**/
         array_push($actions, $companyAction);
         /**公司签署方设置审批动作**/
-        array_push($actions, $auditAction);
-        /**公司签署方设置审批动作**/
         array_push($actions, $lpAction);
 
         $companySignatory->setActions($actions);
@@ -83,11 +57,11 @@ header("Content-Type: text/html; charset=utf-8");
         /**个人签署方**/
         $personalSignatory = new Signatory();
         $personalSignatory->setTenantType("PERSONAL");
-        $personalSignatory->setTenantName("吉哲");
+        $personalSignatory->setTenantName("李四");
         $personalSignatory->setSerialNo(2);
 
         $receiver = new User();
-        $receiver->setContact("18435186216");
+        $receiver->setContact("15000000000");
         $receiver->setContactType("MOBILE");
 
         $personalSignatory->setReceiver($receiver);
@@ -183,7 +157,7 @@ header("Content-Type: text/html; charset=utf-8");
      * @param SDKClient $sdkClient
      * @return mixed|null|string
      */
-    function testSendContract($contractId, $bizId, $documentId, $signatoryId, $actionId, SDKClient $sdkClient){
+    function testSendContract($contractId, $bizId, $documentId, $signatoryId, $companyActionId, $lpActionId, SDKClient $sdkClient){
 
         $contractSendRequest = new ContractSendRequest();
         $contractSendRequest->setContractId($contractId);
@@ -191,7 +165,7 @@ header("Content-Type: text/html; charset=utf-8");
 
         $stamper1 = new Stamper();
         $stamper1->setType('COMPANY');
-        $stamper1->setActionId($actionId);
+        $stamper1->setActionId($companyActionId);
         $stamper1->setDocumentId($documentId);
         $stamper1->setSealId('2566229349702860958');
         $stamper1->setKeyword('劳动');
@@ -200,10 +174,9 @@ header("Content-Type: text/html; charset=utf-8");
         $stamper1->setOffsetY('-0.1');
 
         $stamper2 = new Stamper();
-        $stamper2->setType('COMPANY');
-        $stamper2->setActionId($actionId);
+        $stamper2->setType('LP');
+        $stamper2->setActionId($lpActionId);
         $stamper2->setDocumentId($documentId);
-        $stamper2->setSealId('2566229349702860958');
         $stamper2->setPage('1');
         $stamper2->setOffsetX('0.5');
         $stamper2->setOffsetY('0.5');
@@ -213,8 +186,8 @@ header("Content-Type: text/html; charset=utf-8");
         $stamper3->setSignatoryId($signatoryId);
         $stamper3->setDocumentId($documentId);
         $stamper3->setPage(1);
-        $stamper3->setOffsetX(0.9);
-        $stamper3->setOffsetY(0.9);
+        $stamper3->setOffsetX('0.9');
+        $stamper3->setOffsetY('0.9');
 
         $stampers = array();
         array_push($stampers, $stamper1);
@@ -245,7 +218,7 @@ header("Content-Type: text/html; charset=utf-8");
         $contractAuditRequest->setBizId($bizId);
 
         $audutOperator = new User();
-        $audutOperator->setContact('18435186216');
+        $audutOperator->setContact('15000000000');
         $audutOperator->setContactType('MOBILE');
         $contractAuditRequest->setEmployee($audutOperator);
         $contractAuditRequest->setPass(true);
@@ -271,34 +244,6 @@ header("Content-Type: text/html; charset=utf-8");
         $contractCompanySignRequest = new ContractCompanySignRequest();
         $contractCompanySignRequest->setContractId($contractId);
         $contractCompanySignRequest->setBizId($bizId);
-        /**公章签署**/
-        $stamper1 = new Stamper();
-        $stamper1->setType('COMPANY');
-        $stamper1->setDocumentId($documentId);
-        $stamper1->setSealId('2566229349702860958');
-        $stamper1->setKeyword('劳动');
-        $stamper1->setKeywordIndex('2');
-        $stamper1->setOffsetX('0.2');
-        $stamper1->setOffsetY('-0.2');
-        /**时间戳签署**/
-        $stamper2 = new Stamper();
-        $stamper2->setType('TIMESTAMP');
-        $stamper2->setDocumentId($documentId);
-        $stamper2->setSealId('2566229349702860958');
-        $stamper2->setPage('1');
-        $stamper2->setOffsetX('0.5');
-        $stamper2->setOffsetY('0.5');
-        /**骑缝章签署**/
-        $stamper3 = new Stamper();
-        $stamper3->setType('ACROSS_PAGE');
-        $stamper3->setDocumentId($documentId);
-        $stamper3->setSealId('2566229349702860958');
-        $stamper3->setOffsetY('0.5');
-        $stampers = array();
-        array_push($stampers, $stamper1);
-        array_push($stampers, $stamper2);
-        array_push($stampers, $stamper3);
-        $contractCompanySignRequest->setStampers($stampers);
         $result = $sdkClient->service($contractCompanySignRequest);
         if(!$result) {
             return false;
@@ -320,27 +265,6 @@ header("Content-Type: text/html; charset=utf-8");
         $contractLpSignRequest = new ContractLpSignRequest();
         $contractLpSignRequest->setContractId($contractId);
         $contractLpSignRequest->setBizId($bizId);
-        /**关键字定位**/
-        $stamper1 = new Stamper();
-        $stamper1->setType('LP');
-        $stamper1->setDocumentId($documentId);
-        $stamper1->setKeyword('劳动');
-        $stamper1->setKeywordIndex('2');
-        $stamper1->setOffsetX('0.1');
-        $stamper1->setOffsetY('-0.1');
-        /**坐标定位**/
-        $stamper2 = new Stamper();
-        $stamper2->setType('LP');
-        $stamper2->setDocumentId($documentId);
-        $stamper2->setPage('1');
-        $stamper2->setOffsetX('0.5');
-        $stamper2->setOffsetY('0.5');
-
-        $stampers = array();
-        array_push($stampers, $stamper1);
-        array_push($stampers, $stamper2);
-
-        $contractLpSignRequest->setStampers($stampers);
         $result = $sdkClient->service($contractLpSignRequest);
         if(!$result) {
             return false;
@@ -364,7 +288,7 @@ header("Content-Type: text/html; charset=utf-8");
         $contractPageRequest->setBizId($bizId);
 
         $user = new User();
-        $user->setContact("18435186216");
+        $user->setContact("15000000000");
         $user->setContactType("MOBILE");
 
         $contractPageRequest->setUser($user);

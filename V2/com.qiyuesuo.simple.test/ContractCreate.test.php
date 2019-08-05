@@ -25,7 +25,10 @@ header("Content-Type: text/html; charset=utf-8");
     // 个人签署方ID
     $signatoryId = $result['result']['signatories'][1]['id'];
     // 公章签署节点ID
-    $actionId = $result['result']['signatories'][0]['actions'][0]['id'];
+    $companyActionId = $result['result']['signatories'][0]['actions'][0]['id'];
+    // 法人签署节点ID
+    $lpActionId = $result['result']['signatories'][0]['actions'][1]['id'];
+
     /** 添加合同文档（根据本地文件） */
     $result = testDocumentAddByFile($contractId, $bizId, $sdkClient);
     if($result == false) {
@@ -39,17 +42,12 @@ header("Content-Type: text/html; charset=utf-8");
     }
     $documentId2 = $result['result']['documentId'];
     /** 发起合同 */
-    $result = testSendContract($contractId, $bizId, $documentId1, $signatoryId, $actionId, $sdkClient);
+    $result = testSendContract($contractId, $bizId, $documentId1, $signatoryId, $companyActionId, $lpActionId, $sdkClient);
     if($result == false) {
         exit(0);
     }
     /** 公章签署 */
     $result = testCompanysign($contractId, $bizId, $documentId1, $sdkClient);
-    if($result == false) {
-        exit(0);
-    }
-    /** 审批合同 */
-    $result = testContractAudit($contractId, $bizId, $sdkClient);
     if($result == false) {
         exit(0);
     }
