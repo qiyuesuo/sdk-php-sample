@@ -21,7 +21,7 @@ header("Content-Type: text/html; charset=utf-8");
         $companySignatory->setSerialNo(1);
 
         $receiver = new User();
-        $receiver->setContact("18435186216");
+        $receiver->setContact("10010001001");
         $receiver->setContactType("MOBILE");
 
         $companySignatory->setReceiver($receiver);
@@ -33,7 +33,7 @@ header("Content-Type: text/html; charset=utf-8");
         $companyAction->setSerialNo(1);
         /**公章签署操作人**/
         $companyOperator = new User();
-        $companyOperator->setContact("18435186216");
+        $companyOperator->setContact("10010001001");
         $companyOperator->setContactType("MOBILE");
 
         $companyOperators = array();
@@ -61,7 +61,7 @@ header("Content-Type: text/html; charset=utf-8");
         $personalSignatory->setSerialNo(2);
 
         $receiver = new User();
-        $receiver->setContact("15000000000");
+        $receiver->setContact("10010001002");
         $receiver->setContactType("MOBILE");
 
         $personalSignatory->setReceiver($receiver);
@@ -218,7 +218,7 @@ header("Content-Type: text/html; charset=utf-8");
         $contractAuditRequest->setBizId($bizId);
 
         $audutOperator = new User();
-        $audutOperator->setContact('15000000000');
+        $audutOperator->setContact('10010001002');
         $audutOperator->setContactType('MOBILE');
         $contractAuditRequest->setEmployee($audutOperator);
         $contractAuditRequest->setPass(true);
@@ -288,7 +288,7 @@ header("Content-Type: text/html; charset=utf-8");
         $contractPageRequest->setBizId($bizId);
 
         $user = new User();
-        $user->setContact("15000000000");
+        $user->setContact("10010001002");
         $user->setContactType("MOBILE");
 
         $contractPageRequest->setUser($user);
