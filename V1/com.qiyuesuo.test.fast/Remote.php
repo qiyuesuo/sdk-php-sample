@@ -43,7 +43,7 @@
 		//***********************************************************************1.2 由模版创建
 		$templates = array(
 			'name'=>'bob',
-		    'mobile'=>'13487457854'
+		    'mobile'=>'10010001001'
 		);
 	    $subject = "2017php-remote";//合同主题
 	    $expireTime = "2017-07-08";//合同过期时间；过期未结束签署，则作废，不传该参数则默认30天后过期。
@@ -162,7 +162,7 @@
 		
 		$company = new Company();
 		$company->name = '上海信息科技股份有限公司';
-		$company->telephone = '45782136589';
+		$company->telephone = '10010001001';
 		
 		$stamper = new Stamper();
         $stamper->set_offsetX(0.02);
@@ -182,7 +182,7 @@
         //$documentId = "2319467340736213123";
         $company = new Company();
 		$company->name = '上海信息科技股份有限公司';
-		$company->telephone = '45782136589';
+		$company->telephone = '10010001001';
         //$result =  $remoteSignServiceImpl->signBycompanyNoVisible($documentId,$company);
 		//print_r($result);
 		
@@ -196,7 +196,7 @@
 		$documentId = "2320452915138532000";
 		$person = new Person();
 		$person->name='丁武';
-		$person->mobile='45782136589';
+		$person->mobile='10010001001';
 		$person->gender='MALE';
 		
 		$stamper = new Stamper();
@@ -218,7 +218,7 @@
 		 */
 		$person = new Person();
 		$person->name='丁武';
-		$person->mobile='45782136589';
+		$person->mobile='10010001001';
 		
 		$sealImageBase64 = "iVBORw0KGgoAAAANSUhEUgAAALQAAABkCAYAAAAv8xodAAABh0lEQVR42u3dUW7CQAxF0ex/02EBgFDETGI/nyPxVxXVvkwAFXEcAAAAAAAAAAAAAAAAAAAAAAAAAMBO548b73OiSbzCvjYnGoQ7bYHmEhxs8vLMZGiwXRdoFmJtszwPZEGau5n1iNnVzfxav4NgKdfn/+1nWRz2yvvB7G4bmsUIGou59SrKgCuBgwBBCxpBi9mCLEfQgjYvMxO0eWFB5oUFmZcFWZBZWZJZYUnzZuWdEUG3n5X/pRZ06zn5gICg28/Jp4YELVxRC7pLsCvuF0E/EvWO+0XQW6NePSMxP7TcqX/77ge9mAUddQUTtKBjghazoAWNoKvORtCCjn/+jKAFjWFXeKCbsaCdznixImiLM3BPNwTtdPaiW9CCFrSgPd1A0E5nCzT4ikH7UICgS52on36fzyIKuuzp7ItRb1rMv5czQfuq6VYnzeRL2DngZnEhwzjdsg+k1GGIZ/BroNRHt9PNuxlxCxWuqCOXLFxRWz7ZUYOgoWLUEBM0AAAAAAAAAABQyAu58uZgb5mSegAAAABJRU5ErkJggg==";
 		
@@ -241,7 +241,7 @@
 		$documentId = "2320107957334221365";
         $person = new Person();
 		$person->name='徐帅dshuai';
-		$person->mobile='177170889888';
+		$person->mobile='10010001002';
 		
         //$result =  $remoteSignServiceImpl->signByPersonNoVisible($documentId,$person);
 		//print_r($result);
