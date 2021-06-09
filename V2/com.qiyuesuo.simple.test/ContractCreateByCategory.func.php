@@ -25,7 +25,7 @@ header("Content-Type: text/html; charset=utf-8");
         $personalSignatory->setTenantType("PERSONAL");
         $personalSignatory->setTenantName("李四");
         $personalUser = new User();
-        $personalUser->setContact("15000000000");
+        $personalUser->setContact("150****0000");
         $personalUser->setContactType("MOBILE");
         $personalSignatory->setReceiver($personalUser);
         $personalSignatory->setSerialNo(2);
@@ -189,7 +189,7 @@ header("Content-Type: text/html; charset=utf-8");
         $contractAuditRequest->setBizId($bizId);
 
         $audutOperator = new User();
-        $audutOperator->setContact('15000000000');
+        $audutOperator->setContact('150****0000');
         $audutOperator->setContactType('MOBILE');
         $contractAuditRequest->setEmployee($audutOperator);
         $contractAuditRequest->setPass(true);
@@ -259,7 +259,7 @@ header("Content-Type: text/html; charset=utf-8");
         $contractPageRequest->setBizId($bizId);
 
         $user = new User();
-        $user->setContact("15000000000");
+        $user->setContact("150****0000");
         $user->setContactType("MOBILE");
 
         $contractPageRequest->setUser($user);
