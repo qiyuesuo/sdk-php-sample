@@ -275,8 +275,8 @@
 		 */
 		$documentId = "2320107957334221365";
         $person = new Person();
-		$person->name='徐帅dshuai';
-		$person->mobile='177170889888';
+		$person->name='张三';
+		$person->mobile='10010001001';
 		
         //$result =  $remoteSignServiceImpl->signByPersonNoVisible($documentId,$person);
 		//print_r($result);
@@ -344,7 +344,7 @@
         $person = new Person();
 		$person->name='丁武';
 		$person->paperType='IDCARD';
-        $person->idcard='420683199203047856';
+        $person->idcard='400083199200000000';
         
         $stamper = new Stamper();
         $stamper->set_page(1);
