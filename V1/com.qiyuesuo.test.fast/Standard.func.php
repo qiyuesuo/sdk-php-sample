@@ -4,7 +4,7 @@
 	    /* 无序--本地PDF文件创建*/  
 	    $Receiver = new Receiver("PERSONAL");  
         $Receiver->set_name("徐帅");
-        $Receiver->set_mobile("17717088942");
+        $Receiver->set_mobile("10010001001");
         $Receiver->set_authLevel("BASIC");
 
         $Receiver2 = new Receiver("PLATFORM"); 
@@ -78,7 +78,7 @@
 		//-------------------html创建合同 无序
 		$Receiver = new Receiver("PERSONAL");  
         $Receiver->set_name("徐9");
-        $Receiver->set_mobile("1771708999");
+        $Receiver->set_mobile("10010001002");
         $Receiver->set_authLevel("BASIC");
 
 
