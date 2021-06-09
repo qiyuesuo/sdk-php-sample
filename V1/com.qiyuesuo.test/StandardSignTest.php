@@ -19,7 +19,7 @@
 		
 		$Receiver = new Receiver("PERSONAL");  
         $Receiver->set_name("徐嘟嘟");
-        $Receiver->set_mobile("17717088943");
+        $Receiver->set_mobile("10010001001");
         $Receiver->set_authLevel("BASIC");
 
         $Receiver2 = new Receiver("PLATFORM"); 
@@ -62,13 +62,13 @@
 		//创建合同接收人信息
  		$Receiver = new Receiver("PERSONAL");  
         $Receiver->set_name("徐嘟嘟");
-        $Receiver->set_mobile("17717088941");
+        $Receiver->set_mobile("10010001001");
         $Receiver->set_authLevel("BASIC");
         $Receiver->set_ordinal(1);
         
         $Receiver3 = new Receiver("PERSONAL");  
         $Receiver3->set_name("徐sa");
-        $Receiver3->set_mobile("17717088943");
+        $Receiver3->set_mobile("10010001002");
         $Receiver3->set_authLevel("BASIC");
         $Receiver3->set_ordinal(3);
 
@@ -179,7 +179,7 @@
 		
 		$templates = array(
             'name'=>'帅哥0000',
-            'mobile'=>'134871247850000'
+            'mobile'=>'13487120000'
         );
         
         $contract = new Contract();
@@ -236,7 +236,7 @@
 		//-------------------html创建合同 无序
 		$Receiver = new Receiver("PERSONAL");  
         $Receiver->set_name("徐9");
-        $Receiver->set_mobile("1771708999");
+        $Receiver->set_mobile("10010001002");
         $Receiver->set_authLevel("BASIC");
 
 
@@ -378,7 +378,7 @@
 		                            [id] => 2308966672348397848
 		                            [type] => PERSONAL
 		                            [tenantName] => 徐嘟嘟
-		                            [contact] => 17717088000
+		                            [contact] => 10010001003
 		                            [ordinal] => 1
 		                            [needOperator] => 
 		                            [needLegalPerson] => 
