@@ -23,7 +23,7 @@
 		function createByTemplate($remoteSignServiceImpl){
 			$templates = array(
 				'name'=>'bob',
-			    'mobile'=>'13487457854'
+			    'mobile'=>'10010001001'
 			);
 			
 			//校验模板参数的类型标识
@@ -91,7 +91,7 @@
 			
 			$company = new Company();
 			$company->name = '上海信息科技股份有限公司';
-			$company->telephone = '45782136589';
+			$company->telephone = '10010001001';
 			
 			//$acrossPagePosition = 0.45;//启用骑缝章 并指定位置  骑缝章纵坐标百分比（取值范围：大于0 小于1）
         	$acrossPagePosition = null;//不启用骑缝章
@@ -109,7 +109,7 @@
 		function signByPerson($documentId,$remoteSignServiceImpl){
 			$person = new Person();
 			$person->name='丁武';
-			$person->mobile='45782136589';
+			$person->mobile='10010001001';
 			$person->gender='MALE';
 			
 			$stamper = new Stamper();
@@ -175,7 +175,7 @@
 			$person = new Person();
 			$person->name='丁武';
 			$person->paperType='IDCARD';
-	        $person->idcard='420683199203047856';
+	        $person->idcard='420683199203000000';
 	        
 	        $stamper = new Stamper();
 	        $stamper->set_page(1);
